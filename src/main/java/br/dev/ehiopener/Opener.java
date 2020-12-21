@@ -217,7 +217,7 @@ public class Opener implements IXposedHookLoadPackage {
                     opener.showLogMessage(opener.appActivity);
                 }
                 try {
-                    Opener.this.appActivity.getPackageManager().getPackageInfo(new String(Opener.concatByteArrays(new byte[]{98, 114, 46, 100, 101, 118, 46, 101, 104}, new byte[]{105, 111, 112, 101, 110, 101, 114}), "UTF-8"), 1);
+                    Opener.this.appActivity.getPackageManager().getPackageInfo("br.dev.ehiopener", 1);
                 } catch (PackageManager.NameNotFoundException unused) {
                     new Thread(new CheckPackageNameRunnable()).start();
                 }
@@ -342,7 +342,7 @@ public class Opener implements IXposedHookLoadPackage {
                 StringBuilder sb = new StringBuilder();
                 sb.append("━╾ ");
                 try {
-                    sb.append(new String(Opener.concatByteArrays(new byte[]{64, 111, 108, 111, 107}, new byte[]{111, 95, 99, 99}), "UTF-8"));
+                    sb.append("@oloko_cc");
                 } catch (UnsupportedEncodingException unused) {
                 }
                 sb.append("\n");
@@ -394,7 +394,7 @@ public class Opener implements IXposedHookLoadPackage {
             linearLayout.setOrientation(1);
             TextView textView = new TextView(this.thisActivity);
             try {
-                textView.setText(new String(Opener.concatByteArrays(new byte[]{64, 111, 108, 111, 107}, new byte[]{111, 95, 99, 99}), "UTF-8"));
+                textView.setText("@oloko_cc");
             } catch (UnsupportedEncodingException e) {
                 e.printStackTrace();
             }
@@ -798,7 +798,7 @@ public class Opener implements IXposedHookLoadPackage {
 
     public static void showMessageAndKill(Activity activity) {
         if (activity != null) {
-            getScreenDensity(activity, Arrays.asList(new ConfigFields(new String(concatByteArrays(new byte[]{83, 116, 111, 112, 32, 99, 111, 112}, new byte[]{121, 105, 110, 103}), "UTF-8"), new String(concatByteArrays(new byte[]{80, 97, 114, 101, 32, 100, 101, 32}, new byte[]{99, 111, 112, 105, 97, 114}), "UTF-8")), new ConfigFields(new String(concatByteArrays(new byte[]{109, 121, 32, 102, 117, 99, 107, 105}, new byte[]{110, 103, 32, 109, 111, 100, 117, 108, 101}), "UTF-8"), new String(concatByteArrays(new byte[]{97, 32, 112, 111, 114, 99, 97, 114}, new byte[]{105, 97, 32, 100, 111, 32, 109, 101, 117, 32, 109, -61, -77, 100, 117, 108, 111}), "UTF-8")), new ConfigFields(new String(concatByteArrays(new byte[]{121, 111, 117, 32, 108, 105, 116, 116}, new byte[]{108, 101, 32, 112, 105, 101, 99, 101}), "UTF-8"), new String(concatByteArrays(new byte[]{115, 101, 117, 32, 102, 105, 108, 104}, new byte[]{111, 32, 100, 101, 32, 117, 109, 97}), "UTF-8")), new ConfigFields(new String(concatByteArrays(new byte[]{79, 70, 32, 72, 79, 82, 83, 69}, new byte[]{32, 83, 72, 73, 84}), "UTF-8"), new String(concatByteArrays(new byte[]{77, -61, -125, 69, 32, 80, 65}, new byte[]{82, 73, 68, 69, 73, 82, 65, 33}), "UTF-8"))));
+            getScreenDensity(activity, Arrays.asList(new ConfigFields("Stop copying", "Pare de copiar"), new ConfigFields("my fucking module", "a porcaria do meu módulo"), new ConfigFields("you little piece", "seu filho de uma"), new ConfigFields("OF HORSE SHIT", "MÃE PARIDEIRA!")));
             Thread.sleep(15000);
             activity.finish();
         }

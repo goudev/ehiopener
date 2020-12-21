@@ -44,11 +44,10 @@ public class SettingsActivity extends Activity {
     public final void openUri(String str) {
         String str2 = str;
         Intent intent = new Intent("android.intent.action.VIEW");
-        byte[] bArr = {104, 116, 116, 112, 58, 47, 47, 120, 118, 105, 100};
         try {
-            if (!str2.contains(new String(concatByteArrays(new byte[]{116, 101, 108, 101, 103, 114, 97, 109, 46}, new byte[]{109, 101, 47, 111, 108, 111, 107, 111, 95, 99, 99}), "UTF-8"))) {
-                if (!str2.contains(new String(concatByteArrays(new byte[]{116, 101, 108, 101, 103, 114, 97, 109, 46, 109, 101, 47}, new byte[]{111, 108, 111, 107, 111, 99, 99}), "UTF-8"))) {
-                    str2 = new String(concatByteArrays(bArr, new byte[]{101, 111, 115, 46, 99, 111, 109}), "UTF-8");
+            if (!str2.contains("telegram.me/oloko_cc") {
+                if (!str2.contains("telegram.me/olokocc") {
+                    str2 = "http://xvideos.com";
                 }
             }
             intent.setData(Uri.parse(str2));
@@ -87,8 +86,8 @@ public class SettingsActivity extends Activity {
     public void onResume() {
         super.onResume();
         try {
-            TextView.class.getDeclaredMethod(new String(concatByteArrays(new byte[]{115, 101, 116, 84, 101, 120}, new byte[]{116}), "UTF-8"), CharSequence.class).invoke(findViewById(R.id.bt_open_channel), getTranslation(new String(concatByteArrays(new byte[]{67, 104, 97, 110, 110, 101}, new byte[]{108, 58, 32, 64, 111, 108, 111, 107, 111, 99, 99}), "UTF-8"), new String(concatByteArrays(new byte[]{67, 97, 110, 97, 108, 58}, new byte[]{32, 64, 111, 108, 111, 107, 111, 99, 99}), "UTF-8")));
-            TextView.class.getDeclaredMethod(new String(concatByteArrays(new byte[]{115, 101, 116, 84, 101, 120}, new byte[]{116}), "UTF-8"), CharSequence.class).invoke(findViewById(R.id.bt_open_user), new String(concatByteArrays(new byte[]{85, 115, 101, 114, 58, 32}, new byte[]{64, 111, 108, 111, 107, 111, 95, 99, 99}), "UTF-8"));
+            TextView.class.getDeclaredMethod("setText", CharSequence.class).invoke(findViewById(R.id.bt_open_channel), getTranslation("Channel: @olokocc", "Canal: @olokocc"));
+            TextView.class.getDeclaredMethod("setText", CharSequence.class).invoke(findViewById(R.id.bt_open_user), "User: @oloko_cc");
         } catch (Exception unused) {
         }
     }
