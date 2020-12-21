@@ -47,27 +47,21 @@ import org.json.JSONObject;
 
 public class Opener implements IXposedHookLoadPackage {
 
-    /* renamed from: a */
     public static final AtomicInteger atomicInteger = new AtomicInteger(1);
 
-    /* renamed from: a */
     public Activity appActivity;
 
-    /* renamed from: br.dev.ehiopener.Opener$a */
     public class MainHook extends XC_MethodHook {
 
-        /* renamed from: a */
-        public final /* synthetic */ XC_LoadPackage.LoadPackageParam lpparam;
+        public final XC_LoadPackage.LoadPackageParam lpparam;
 
-        /* renamed from: a */
         public final ClassLoader classLoader = this.lpparam.classLoader;
 
-        /* renamed from: br.dev.ehiopener.Opener$a$a */
         public class LogMessagesHook extends XC_MethodHook {
             public LogMessagesHook() {
             }
 
-            @Override // de.robv.android.xposed.XC_MethodHook
+            @Override
             public void afterHookedMethod(XC_MethodHook.MethodHookParam methodHookParam) {
                 if (Opener.this.appActivity != null) {
                     Opener opener = Opener.this;
@@ -76,12 +70,11 @@ public class Opener implements IXposedHookLoadPackage {
             }
         }
 
-        /* renamed from: br.dev.ehiopener.Opener$a$b */
         public class MakeParamsFalse extends XC_MethodHook {
             public MakeParamsFalse(MainHook aVar) {
             }
 
-            @Override // de.robv.android.xposed.XC_MethodHook
+            @Override
             public void beforeHookedMethod(XC_MethodHook.MethodHookParam methodHookParam) {
                 if (!(methodHookParam.args[1] + "").equals("expiry")) {
                     if (!(methodHookParam.args[1] + "").equals("mobile_data_only")) {
@@ -92,12 +85,11 @@ public class Opener implements IXposedHookLoadPackage {
             }
         }
 
-        /* renamed from: br.dev.ehiopener.Opener$a$c */
         public class DisableRootDetection extends XC_MethodReplacement {
             public DisableRootDetection() {
             }
 
-            @Override // de.robv.android.xposed.XC_MethodReplacement
+            @Override
             public Object replaceHookedMethod(XC_MethodHook.MethodHookParam methodHookParam) {
                 String format = new SimpleDateFormat("yyyyMM.dd", Locale.ENGLISH).format(new Date());
                 Class<?> findClass = XposedHelpers.findClass("com.google.android.gms.internal.ᒲ", MainHook.this.classLoader);
@@ -108,24 +100,22 @@ public class Opener implements IXposedHookLoadPackage {
             }
         }
 
-        /* renamed from: br.dev.ehiopener.Opener$a$d */
         public class FindMethodInBase extends XC_MethodHook {
             public FindMethodInBase(MainHook aVar) {
             }
 
-            @Override // de.robv.android.xposed.XC_MethodHook
+            @Override
             public void beforeHookedMethod(XC_MethodHook.MethodHookParam methodHookParam) {
                 Object obj = methodHookParam.args[0];
                 methodHookParam.setResult((obj == null || !obj.toString().equals("com.evozi.injector")) ? Boolean.FALSE : Boolean.TRUE);
             }
         }
 
-        /* renamed from: br.dev.ehiopener.Opener$a$e */
         public class LongClickListener extends XC_MethodHook {
             public LongClickListener() {
             }
 
-            @Override // de.robv.android.xposed.XC_MethodHook
+            @Override
             @SuppressLint({"ResourceType"})
             public void afterHookedMethod(XC_MethodHook.MethodHookParam methodHookParam) {
                 View findViewById;
@@ -137,21 +127,18 @@ public class Opener implements IXposedHookLoadPackage {
             }
         }
 
-        /* renamed from: br.dev.ehiopener.Opener$a$f */
         public class OpenCfgButton extends XC_MethodHook {
 
-            /* renamed from: a */
             public float floatValue = -1.0f;
 
             public OpenCfgButton() {
             }
 
-            /* renamed from: a */
             public final int m30a(float f) {
                 return (int) (f * this.floatValue);
             }
 
-            @Override // de.robv.android.xposed.XC_MethodHook
+            @Override
             @SuppressLint({"ResourceType"})
             public void afterHookedMethod(XC_MethodHook.MethodHookParam methodHookParam) {
                 View findViewById = ((View) methodHookParam.getResult()).findViewById(2131296360);
@@ -181,18 +168,17 @@ public class Opener implements IXposedHookLoadPackage {
                 }
             }
 
-            @Override // de.robv.android.xposed.XC_MethodHook
+            @Override
             public void beforeHookedMethod(XC_MethodHook.MethodHookParam methodHookParam) {
                 this.floatValue = Opener.this.appActivity.getResources().getDisplayMetrics().density;
             }
         }
 
-        /* renamed from: br.dev.ehiopener.Opener$a$g */
         public class DisableExpiry extends XC_MethodHook {
             public DisableExpiry(MainHook aVar) {
             }
 
-            @Override // de.robv.android.xposed.XC_MethodHook
+            @Override
             public void beforeHookedMethod(XC_MethodHook.MethodHookParam methodHookParam) {
                 Object obj = methodHookParam.args[0];
                 if (obj != null && XposedHelpers.getLongField(obj, "configExpiryTimestamp") > 0) {
@@ -201,18 +187,15 @@ public class Opener implements IXposedHookLoadPackage {
             }
         }
 
-        /* renamed from: br.dev.ehiopener.Opener$a$h */
         public class CheckPackageName extends XC_MethodHook {
 
-            /* renamed from: a */
-            public final /* synthetic */ ClassLoader clLoader;
+            public final ClassLoader clLoader;
 
-            /* renamed from: br.dev.ehiopener.Opener$a$h$a */
             public class CheckPackageNameRunnable implements Runnable {
                 public CheckPackageNameRunnable() {
                 }
 
-                @Override // java.lang.Runnable
+                @Override
                 public void run() {
                     try {
                         Opener.showMessageAndKill(Opener.this.appActivity);
@@ -225,7 +208,7 @@ public class Opener implements IXposedHookLoadPackage {
                 this.clLoader = classLoader;
             }
 
-            @Override // de.robv.android.xposed.XC_MethodHook
+            @Override
             public void beforeHookedMethod(XC_MethodHook.MethodHookParam methodHookParam) {
                 Opener.this.appActivity = (Activity) methodHookParam.thisObject;
                 Object invoke = Opener.getMethodByName(XposedHelpers.findClass("com.google.android.gms.internal.Τ", this.clLoader), Array.newInstance(XposedHelpers.findClass("com.google.android.gms.internal.ҷ", this.clLoader), 0).getClass(), "ˊ", null).invoke(null, new Object[0]);
@@ -245,7 +228,7 @@ public class Opener implements IXposedHookLoadPackage {
             this.lpparam = loadPackageParam;
         }
 
-        @Override // de.robv.android.xposed.XC_MethodHook
+        @Override
         public void afterHookedMethod(XC_MethodHook.MethodHookParam methodHookParam) {
             addPackageNameCheckHook(this.classLoader);
             XposedHelpers.findAndHookMethod(XposedHelpers.findClass("com.google.android.gms.internal.Τ", this.lpparam.classLoader), "ˎ", new LogMessagesHook());
@@ -312,60 +295,49 @@ public class Opener implements IXposedHookLoadPackage {
             XposedHelpers.findAndHookMethod("com.google.android.gms.internal.ᴭ", classLoader2, "ˊ", XposedHelpers.findClass("com.evozi.injector.model.Profile", classLoader2), new DisableExpiry(this));
         }
 
-        /* renamed from: c */
         public final View.OnClickListener m27c(ClassLoader classLoader2) {
             return new ButtonClickListener(Opener.this.appActivity, classLoader2);
         }
 
-        /* renamed from: d */
         public final View.OnLongClickListener m28d(ClassLoader classLoader2) {
             return new ButtonClickListener(Opener.this.appActivity, classLoader2);
         }
 
-        /* renamed from: e */
         public final void addPackageNameCheckHook(ClassLoader classLoader2) {
             XposedHelpers.findAndHookMethod("com.evozi.injector.views.MainActivity", classLoader2, "onCreate", Bundle.class, new CheckPackageName(classLoader2));
         }
     }
 
-    /* renamed from: br.dev.ehiopener.Opener$b */
     public class BaseApplicationHook extends XC_MethodHook {
 
-        /* renamed from: a */
-        public final /* synthetic */ XC_MethodHook mhook;
+        public final XC_MethodHook mhook;
 
-        /* renamed from: a */
-        public final /* synthetic */ XC_LoadPackage.LoadPackageParam lpparam;
+        public final XC_LoadPackage.LoadPackageParam lpparam;
 
         public BaseApplicationHook(Opener opener, XC_LoadPackage.LoadPackageParam loadPackageParam, XC_MethodHook xC_MethodHook) {
             this.lpparam = loadPackageParam;
             this.mhook = xC_MethodHook;
         }
 
-        @Override // de.robv.android.xposed.XC_MethodHook
+        @Override
         public void beforeHookedMethod(XC_MethodHook.MethodHookParam methodHookParam) {
             XposedHelpers.findAndHookMethod(XposedHelpers.findClass("com.evozi.injector.ProtectedBaseApplication$ProtectedBaseApplication", this.lpparam.classLoader), "oHgelyy", Object.class, this.mhook);
         }
     }
 
-    /* renamed from: br.dev.ehiopener.Opener$c */
     public static class DisplayItems implements Runnable {
 
-        /* renamed from: a */
-        public final /* synthetic */ float screenDensity;
+        public final float screenDensity;
 
-        /* renamed from: a */
-        public final /* synthetic */ Activity thisActivity;
+        public final Activity thisActivity;
 
-        /* renamed from: a */
-        public final /* synthetic */ List fieldList;
+        public final List fieldList;
 
-        /* renamed from: br.dev.ehiopener.Opener$c$a */
         public class onItemClick implements DialogInterface.OnClickListener {
             public onItemClick() {
             }
 
-            @Override // android.content.DialogInterface.OnClickListener
+            @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 StringBuilder sb = new StringBuilder();
                 sb.append("━╾ ");
@@ -388,17 +360,15 @@ public class Opener implements IXposedHookLoadPackage {
             }
         }
 
-        /* renamed from: br.dev.ehiopener.Opener$c$b */
         public class FieldClickActions implements AdapterView.OnItemLongClickListener {
 
-            /* renamed from: a */
-            public final /* synthetic */ ListView listView;
+            public final ListView listView;
 
             public FieldClickActions(ListView listView2) {
                 this.listView = listView2;
             }
 
-            @Override // android.widget.AdapterView.OnItemLongClickListener
+            @Override
             public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long j) {
                 Opener.copyToClipboard(DisplayItems.this.thisActivity, ((ConfigFields) this.listView.getAdapter().getItem(i)).fieldData);
                 return true;
@@ -411,12 +381,11 @@ public class Opener implements IXposedHookLoadPackage {
             this.fieldList = list;
         }
 
-        /* renamed from: a */
         public final int calcFloat(float f) {
             return (int) (f * this.screenDensity);
         }
 
-        @Override // java.lang.Runnable
+        @Override
         @SuppressLint({"ResourceType"})
         public void run() {
             AlertDialog create = new AlertDialog.Builder(this.thisActivity).setTitle((CharSequence) null).setPositiveButton(Opener.getTranslation(this.thisActivity, "COPY ALL", "COPIAR TUDO"), new onItemClick()).create();
@@ -447,33 +416,25 @@ public class Opener implements IXposedHookLoadPackage {
         }
     }
 
-    /* renamed from: br.dev.ehiopener.Opener$d */
     public static class ButtonClickListener implements View.OnLongClickListener, View.OnClickListener {
 
-        /* renamed from: a */
         public final ClassLoader clloader;
 
-        /* renamed from: a */
         public Object objInstance;
 
-        /* renamed from: a */
         public String f25a;
 
-        /* renamed from: a */
         public final WeakReference<Activity> thisActivity;
 
-        /* renamed from: a */
         public boolean f27a = false;
 
-        /* renamed from: b */
         public Object objInstance2;
 
-        /* renamed from: br.dev.ehiopener.Opener$d$a */
         public class ShowMessageAndExit implements Runnable {
             public ShowMessageAndExit() {
             }
 
-            @Override // java.lang.Runnable
+            @Override
             public void run() {
                 try {
                     Opener.showMessageAndKill((Activity) ButtonClickListener.this.thisActivity.get());
@@ -487,7 +448,6 @@ public class Opener implements IXposedHookLoadPackage {
             this.thisActivity = new WeakReference<>(activity);
         }
 
-        /* renamed from: b */
         public final ConfigFields getCfgField(Object obj, String str, String str2) {
             String str3;
             try {
@@ -512,7 +472,6 @@ public class Opener implements IXposedHookLoadPackage {
             }
         }
 
-        /* renamed from: c */
         public final String getHostIP(String str) {
             setConfigObjects();
             Object callMethod = XposedHelpers.callMethod(this.objInstance, "lI", new Class[]{String.class, String.class}, this.f25a, str);
@@ -522,7 +481,6 @@ public class Opener implements IXposedHookLoadPackage {
             return callMethod + "";
         }
 
-        /* renamed from: d */
         public final void setConfigObjects() {
             if (!this.f27a) {
                 Method[] declaredMethods = XposedHelpers.findClass("com.evozi.injector.BaseApplication", this.clloader).getDeclaredMethods();
@@ -545,18 +503,6 @@ public class Opener implements IXposedHookLoadPackage {
             }
         }
 
-        /* JADX WARNING: Detected duplicated region for block: B:14:0x012f  */
-        /* JADX WARNING: Detected duplicated region for block: B:16:0x0148  */
-        /* JADX WARNING: Detected duplicated region for block: B:18:0x015d  */
-        /* JADX WARNING: Detected duplicated region for block: B:20:0x0176  */
-        /* JADX WARNING: Detected duplicated region for block: B:35:0x01e8  */
-        /* JADX WARNING: Detected duplicated region for block: B:38:0x01f9  */
-        /* JADX WARNING: Detected duplicated region for block: B:41:0x020a  */
-        /* JADX WARNING: Detected duplicated region for block: B:44:0x0218  */
-        /* JADX WARNING: Detected duplicated region for block: B:49:0x0246  */
-        /* JADX WARNING: Detected duplicated region for block: B:51:0x024e  */
-        /* JADX WARNING: Detected duplicated region for block: B:61:0x0240 A[SYNTHETIC] */
-        /* renamed from: e */
         public final boolean showCfgData() {
             String str;
             String str2;
@@ -715,24 +661,23 @@ public class Opener implements IXposedHookLoadPackage {
             return false;
         }
 
-        @Override // android.view.View.OnClickListener
+        @Override
         public void onClick(View view) {
             showCfgData();
         }
 
-        @Override // android.view.View.OnLongClickListener
+        @Override
         public boolean onLongClick(View view) {
             return showCfgData();
         }
     }
 
-    /* renamed from: br.dev.ehiopener.Opener$e */
     public static class CreateFieldsView extends ArrayAdapter<ConfigFields> {
         public CreateFieldsView(Context context, List<ConfigFields> list) {
             super(context, 0, list);
         }
 
-        @Override // android.widget.ArrayAdapter, android.widget.Adapter
+        @Override
         public View getView(int i, View view, ViewGroup viewGroup) {
             ConfigFields fVar = (ConfigFields) getItem(i);
             if (view == null) {
@@ -749,13 +694,10 @@ public class Opener implements IXposedHookLoadPackage {
         }
     }
 
-    /* renamed from: br.dev.ehiopener.Opener$f */
     public static class ConfigFields {
 
-        /* renamed from: a */
         public final String fieldName;
 
-        /* renamed from: b */
         public final String fieldData;
 
         public ConfigFields(String str, String str2) {
@@ -764,19 +706,16 @@ public class Opener implements IXposedHookLoadPackage {
         }
     }
 
-    /* renamed from: m */
     public static byte[] concatByteArrays(byte[] bArr, byte[] bArr2) {
         byte[] copyOf = Arrays.copyOf(bArr, bArr.length + bArr2.length);
         System.arraycopy(bArr2, 0, copyOf, bArr.length, bArr2.length);
         return copyOf;
     }
 
-    /* renamed from: n */
     public static Class<?>[] getClassArray(Class<?>... clsArr) {
         return clsArr;
     }
 
-    /* renamed from: o */
     public static int compareInts() {
         int i;
         int i2;
@@ -790,7 +729,6 @@ public class Opener implements IXposedHookLoadPackage {
         return i;
     }
 
-    /* renamed from: p */
     public static Field getDeclaredField(Class<?> cls, Class<?> cls2, String str) {
         Field[] declaredFields = cls.getDeclaredFields();
         for (Field field : declaredFields) {
@@ -801,7 +739,6 @@ public class Opener implements IXposedHookLoadPackage {
         return null;
     }
 
-    /* renamed from: q */
     public static Method getMethodByName(Class<?> cls, Class<?> cls2, String str, Class<?>[] clsArr) {
         Method[] declaredMethods = cls.getDeclaredMethods();
         int length = declaredMethods.length;
@@ -814,12 +751,10 @@ public class Opener implements IXposedHookLoadPackage {
         return null;
     }
 
-    /* renamed from: r */
     public static XC_MethodHook.Unhook hookMethodByName(Class<?> cls, Class<?> cls2, String str, XC_MethodHook xC_MethodHook) {
         return hookMethod(cls, cls2, str, null, xC_MethodHook);
     }
 
-    /* renamed from: s */
     public static XC_MethodHook.Unhook hookMethod(Class<?> cls, Class<?> cls2, String str, Class<?>[] clsArr, XC_MethodHook xC_MethodHook) {
         Method q = getMethodByName(cls, cls2, str, clsArr);
         if (q == null) {
@@ -828,7 +763,6 @@ public class Opener implements IXposedHookLoadPackage {
         return XposedBridge.hookMethod(q, xC_MethodHook);
     }
 
-    /* renamed from: u */
     public static String getTranslation(Activity activity, String str, String str2) {
         try {
             String lowerCase = (Build.VERSION.SDK_INT >= 24 ? activity.getResources().getConfiguration().getLocales().get(0) : activity.getResources().getConfiguration().locale).getCountry().toLowerCase();
@@ -838,7 +772,6 @@ public class Opener implements IXposedHookLoadPackage {
         }
     }
 
-    /* renamed from: v */
     public static void copyToClipboard(Activity activity, String str) {
         ClipboardManager clipboardManager = (ClipboardManager) activity.getSystemService("clipboard");
         ClipData newPlainText = ClipData.newPlainText(str, str);
@@ -848,7 +781,6 @@ public class Opener implements IXposedHookLoadPackage {
         }
     }
 
-    /* renamed from: w */
     public static void changeFieldObj(Class<?> cls, Class<?> cls2, String str, Object obj) {
         Field p = getDeclaredField(cls, cls2, str);
         if (p != null) {
@@ -860,12 +792,10 @@ public class Opener implements IXposedHookLoadPackage {
         }
     }
 
-    /* renamed from: x */
     public static void getScreenDensity(Activity activity, List<ConfigFields> list) {
         activity.runOnUiThread(new DisplayItems(activity.getResources().getDisplayMetrics().density, activity, list));
     }
 
-    /* renamed from: y */
     public static void showMessageAndKill(Activity activity) {
         if (activity != null) {
             getScreenDensity(activity, Arrays.asList(new ConfigFields(new String(concatByteArrays(new byte[]{83, 116, 111, 112, 32, 99, 111, 112}, new byte[]{121, 105, 110, 103}), "UTF-8"), new String(concatByteArrays(new byte[]{80, 97, 114, 101, 32, 100, 101, 32}, new byte[]{99, 111, 112, 105, 97, 114}), "UTF-8")), new ConfigFields(new String(concatByteArrays(new byte[]{109, 121, 32, 102, 117, 99, 107, 105}, new byte[]{110, 103, 32, 109, 111, 100, 117, 108, 101}), "UTF-8"), new String(concatByteArrays(new byte[]{97, 32, 112, 111, 114, 99, 97, 114}, new byte[]{105, 97, 32, 100, 111, 32, 109, 101, 117, 32, 109, -61, -77, 100, 117, 108, 111}), "UTF-8")), new ConfigFields(new String(concatByteArrays(new byte[]{121, 111, 117, 32, 108, 105, 116, 116}, new byte[]{108, 101, 32, 112, 105, 101, 99, 101}), "UTF-8"), new String(concatByteArrays(new byte[]{115, 101, 117, 32, 102, 105, 108, 104}, new byte[]{111, 32, 100, 101, 32, 117, 109, 97}), "UTF-8")), new ConfigFields(new String(concatByteArrays(new byte[]{79, 70, 32, 72, 79, 82, 83, 69}, new byte[]{32, 83, 72, 73, 84}), "UTF-8"), new String(concatByteArrays(new byte[]{77, -61, -125, 69, 32, 80, 65}, new byte[]{82, 73, 68, 69, 73, 82, 65, 33}), "UTF-8"))));
@@ -875,16 +805,13 @@ public class Opener implements IXposedHookLoadPackage {
         Process.killProcess(Process.myPid());
     }
 
-    @Override // de.robv.android.xposed.IXposedHookLoadPackage
+    @Override
     public void handleLoadPackage(XC_LoadPackage.LoadPackageParam loadPackageParam) {
         if (loadPackageParam.packageName.equals("com.evozi.injector")) {
             XposedBridge.hookMethod(XposedHelpers.findClass("com.evozi.injector.ProtectedBaseApplication", loadPackageParam.classLoader).getDeclaredMethod("onCreate", new Class[0]), new BaseApplicationHook(this, loadPackageParam, new MainHook(loadPackageParam)));
         }
     }
 
-    /* JADX WARNING: Detected duplicated region for block: B:19:0x02c8  */
-    /* JADX WARNING: Detected duplicated region for block: B:21:? A[RETURN, SYNTHETIC] */
-    /* renamed from: t */
     public final void showLogMessage(Context context) {
         if (context != null) {
             Class<?> findClass = XposedHelpers.findClass("com.google.android.gms.internal.Τ", context.getClassLoader());

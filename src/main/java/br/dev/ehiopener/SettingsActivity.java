@@ -16,14 +16,12 @@ import java.io.UnsupportedEncodingException;
 import java.util.Arrays;
 
 public class SettingsActivity extends Activity {
-    /* renamed from: a */
     public static byte[] concatByteArrays(byte[] bArr, byte[] bArr2) {
         byte[] copyOf = Arrays.copyOf(bArr, bArr.length + bArr2.length);
         System.arraycopy(bArr2, 0, copyOf, bArr.length, bArr2.length);
         return copyOf;
     }
 
-    /* renamed from: b */
     public final CharSequence getApplicationLabel(Context context) {
         ApplicationInfo applicationInfo;
         PackageManager packageManager = context.getPackageManager();
@@ -43,7 +41,6 @@ public class SettingsActivity extends Activity {
         openUri("https://telegram.me/oloko_cc");
     }
 
-    /* renamed from: c */
     public final void openUri(String str) {
         String str2 = str;
         Intent intent = new Intent("android.intent.action.VIEW");
@@ -60,7 +57,6 @@ public class SettingsActivity extends Activity {
         }
     }
 
-    /* renamed from: d */
     public final String getTranslation(String str, String str2) {
         try {
             String lowerCase = (Build.VERSION.SDK_INT >= 24 ? getResources().getConfiguration().getLocales().get(0) : getResources().getConfiguration().locale).getCountry().toLowerCase();
@@ -70,7 +66,7 @@ public class SettingsActivity extends Activity {
         }
     }
 
-    @Override // android.app.Activity
+    @Override
     public void onCreate(Bundle bundle) {
         super.onCreate(bundle);
         setContentView(R.layout.activity_layout);
@@ -87,7 +83,7 @@ public class SettingsActivity extends Activity {
         }
     }
 
-    @Override // android.app.Activity
+    @Override
     public void onResume() {
         super.onResume();
         try {
