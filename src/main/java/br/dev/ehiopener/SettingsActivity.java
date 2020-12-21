@@ -12,7 +12,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.widget.TextView;
-import com.swift.sandhook.lib.R;
 import java.io.UnsupportedEncodingException;
 import java.util.Arrays;
 
