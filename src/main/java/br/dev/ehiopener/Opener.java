@@ -24,7 +24,6 @@ import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-import com.swift.sandhook.lib.BuildConfig;
 import de.robv.android.xposed.IXposedHookLoadPackage;
 import de.robv.android.xposed.XC_MethodHook;
 import de.robv.android.xposed.XC_MethodReplacement;
@@ -84,8 +83,8 @@ public class Opener implements IXposedHookLoadPackage {
 
             @Override // de.robv.android.xposed.XC_MethodHook
             public void beforeHookedMethod(XC_MethodHook.MethodHookParam methodHookParam) {
-                if (!(methodHookParam.args[1] + BuildConfig.FLAVOR).equals("expiry")) {
-                    if (!(methodHookParam.args[1] + BuildConfig.FLAVOR).equals("mobile_data_only")) {
+                if (!(methodHookParam.args[1] + "").equals("expiry")) {
+                    if (!(methodHookParam.args[1] + "").equals("mobile_data_only")) {
                         return;
                     }
                 }
@@ -496,14 +495,14 @@ public class Opener implements IXposedHookLoadPackage {
                 Field findField = XposedHelpers.findField(obj.getClass(), str);
                 Object obj2 = findField.get(obj);
                 if (findField.getType().equals(String.class)) {
-                    str3 = getHostIP(obj2 + BuildConfig.FLAVOR);
+                    str3 = getHostIP(obj2 + "");
                 } else {
-                    str3 = obj2 + BuildConfig.FLAVOR;
+                    str3 = obj2 + "";
                 }
                 if (str3 == null) {
                     return null;
                 }
-                if (!(str3 + BuildConfig.FLAVOR).trim().isEmpty()) {
+                if (!(str3 + "").trim().isEmpty()) {
                     return new ConfigFields(str2, str3);
                 }
                 return null;
@@ -520,7 +519,7 @@ public class Opener implements IXposedHookLoadPackage {
             if (callMethod == null) {
                 return null;
             }
-            return callMethod + BuildConfig.FLAVOR;
+            return callMethod + "";
         }
 
         /* renamed from: d */
@@ -542,7 +541,7 @@ public class Opener implements IXposedHookLoadPackage {
                     }
                     i++;
                 }
-                this.f25a = XposedHelpers.callMethod(this.objInstance2, "getString", new Class[]{String.class, String.class}, "configSalt", BuildConfig.FLAVOR) + BuildConfig.FLAVOR;
+                this.f25a = XposedHelpers.callMethod(this.objInstance2, "getString", new Class[]{String.class, String.class}, "configSalt", "") + "";
             }
         }
 
@@ -579,9 +578,9 @@ public class Opener implements IXposedHookLoadPackage {
                 ArrayList arrayList = new ArrayList();
                 Object objectField3 = XposedHelpers.getObjectField(callStaticMethod, "host");
                 if (objectField3 != null) {
-                    if (!(objectField3 + BuildConfig.FLAVOR).trim().isEmpty()) {
+                    if (!(objectField3 + "").trim().isEmpty()) {
                         StringBuilder sb2 = new StringBuilder();
-                        sb2.append(getHostIP(objectField3 + BuildConfig.FLAVOR));
+                        sb2.append(getHostIP(objectField3 + ""));
                         sb2.append(":");
                         sb2.append(XposedHelpers.getIntField(callStaticMethod, "port"));
                         str = sb2.toString();
@@ -595,10 +594,10 @@ public class Opener implements IXposedHookLoadPackage {
                         objectField = XposedHelpers.getObjectField(callStaticMethod, "shadowsocksHost");
                         objectField2 = XposedHelpers.getObjectField(callStaticMethod, "shadowsocksPort");
                         if (objectField != null) {
-                            if (!(objectField + BuildConfig.FLAVOR).trim().isEmpty()) {
-                                str2 = getHostIP(objectField + BuildConfig.FLAVOR);
+                            if (!(objectField + "").trim().isEmpty()) {
+                                str2 = getHostIP(objectField + "");
                                 if (objectField2 != null) {
-                                    if (!(objectField2 + BuildConfig.FLAVOR).trim().isEmpty()) {
+                                    if (!(objectField2 + "").trim().isEmpty()) {
                                         str2 = str2 + ":" + objectField2;
                                     }
                                 }
@@ -659,10 +658,10 @@ public class Opener implements IXposedHookLoadPackage {
                 objectField = XposedHelpers.getObjectField(callStaticMethod, "shadowsocksHost");
                 objectField2 = XposedHelpers.getObjectField(callStaticMethod, "shadowsocksPort");
                 if (objectField != null) {
-                    if (!(objectField + BuildConfig.FLAVOR).trim().isEmpty()) {
-                        str2 = getHostIP(objectField + BuildConfig.FLAVOR);
+                    if (!(objectField + "").trim().isEmpty()) {
+                        str2 = getHostIP(objectField + "");
                         if (objectField2 != null) {
-                            if (!(objectField2 + BuildConfig.FLAVOR).trim().isEmpty()) {
+                            if (!(objectField2 + "").trim().isEmpty()) {
                                 str2 = str2 + ":" + objectField2;
                             }
                         }
