@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android" android:orientation="vertical" android:layout_width="match_parent" android:layout_height="match_parent">
+    <TextView android:textSize="35sp" android:gravity="center" android:id="@+id/title" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="10dp" android:text="AppName" android:layout_alignParentTop="true" android:layout_centerHorizontal="true"/>
+    <TextView android:textSize="12sp" android:gravity="center" android:id="@+id/subtitle" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="3dp" android:text="HTTP Injector v5.0.9 (127)" android:layout_below="@+id/title" android:layout_centerHorizontal="true"/>
+    <LinearLayout android:gravity="center" android:orientation="vertical" android:layout_width="match_parent" android:layout_height="match_parent" android:layout_above="@+id/buttons" android:layout_below="@+id/subtitle">
+        <ScrollView android:layout_width="match_parent" android:layout_height="wrap_content">
+            <LinearLayout android:orientation="vertical" android:paddingTop="10dp" android:paddingBottom="10dp" android:layout_width="match_parent" android:layout_height="wrap_content">
+                <TextView android:textSize="16sp" android:textStyle="italic" android:gravity="center" android:id="@+id/tv_xp_pt" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Esse app precisa do Xposed"/>
+                <TextView android:textSize="13sp" android:textStyle="italic" android:gravity="center" android:id="@+id/tv_xp_en" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginBottom="20dp" android:text="This app needs Xposed to work"/>
+                <ImageView android:id="@+id/iv_inst" android:layout_width="match_parent" android:layout_height="wrap_content" android:src="@mipmap/example" android:contentDescription="Instructions"/>
+                <TextView android:textSize="16sp" android:gravity="center" android:id="@+id/tv_pt" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="30dp" android:text="Pressione o botão ao lado do INICIAR"/>
+                <TextView android:textSize="14sp" android:gravity="center" android:id="@+id/tv_en" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="5dp" android:text="Press the button next to the START"/>
+            </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
+    <LinearLayout android:gravity="center" android:id="@+id/buttons" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="20dp" android:layout_alignParentBottom="true">
+        <Button android:textSize="13sp" android:id="@+id/bt_open_channel" android:background="@drawable/button_effect" android:padding="15dp" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_margin="10dp" android:maxWidth="160dp" android:minWidth="100dp" android:text="Channel: @olokocc" android:onClick="btOpenChannel" android:textAllCaps="false"/>
+        <Button android:textSize="13sp" android:id="@+id/bt_open_user" android:background="@drawable/button_effect" android:padding="15dp" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_margin="10dp" android:maxWidth="160dp" android:minWidth="100dp" android:text="User: @oloko_cc" android:onClick="btOpenUser" android:textAllCaps="false"/>
+    </LinearLayout>
+</RelativeLayout>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <public type="drawable" name="button_effect" id="2130771968" />
+    <public type="drawable" name="button_normal" id="2130771969" />
+    <public type="drawable" name="button_pressed" id="2130771970" />
+    <public type="id" name="bt_open_channel" id="2130837504" />
+    <public type="id" name="bt_open_user" id="2130837505" />
+    <public type="id" name="buttons" id="2130837506" />
+    <public type="id" name="iv_inst" id="2130837507" />
+    <public type="id" name="subtitle" id="2130837508" />
+    <public type="id" name="title" id="2130837509" />
+    <public type="id" name="tv_en" id="2130837510" />
+    <public type="id" name="tv_pt" id="2130837511" />
+    <public type="id" name="tv_xp_en" id="2130837512" />
+    <public type="id" name="tv_xp_pt" id="2130837513" />
+    <public type="layout" name="activity_layout" id="2130903040" />
+    <public type="mipmap" name="example" id="2130968576" />
+    <public type="mipmap" name="ic_launcher" id="2130968577" />
+    <public type="string" name="app_name" id="2131034112" />
+    <public type="style" name="MyTheme" id="2131099648" />
+</resources>
